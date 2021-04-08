@@ -1,0 +1,9 @@
+/bin
+/.go
+/.container-*
+/.dockerfile-*
+
+TEMPLATE_README.md
+.idea
+build
+
