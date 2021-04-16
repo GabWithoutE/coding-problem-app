@@ -32,23 +32,25 @@ Context: Coding Interview Problems Solving
 | Entity | Definition |
 | ------ | ---------- |
 | `Problem`Problem  | Has properties for the parameters `Problem` |
-| `Problem`Solution | Has properties for the return values of `Solution` |
+
+### Value Objects
+| Entity  | Object   | Description |
+| ------- | -------- | ----------- |
+| Problem | Solver   | Implentation for solving the problem |
+| Problem | Solution | Return value of the solver for the problem given inputs |
 
 ### Service
 | Service    | Description |
 | ---------- | ----------- | 
 | `Problem`Solving | Given parameters for the `Problem`, return the solution | 
-| `Problem``Solver`Implementation | Given the type of `Solver` for the `Problem` return the `Solver`'s implementation | 
+| `Problem`Listing | Listing problems that can be solved |
 
 ### Events
 | Event | Description |
 | ----- | ----------- |
 | `Problem`Solved | Successfully solved `problem` |
 | `Problem`InvalidInputs | Invalid inputs to `problem` |
-| `Problem`NotFound | Invalid problem was requested |
 | `Problem`Unsolvable | The solution was run, and determined that the problem could not be solved with the given valid parameters | 
-| `Solver`NotImplemented | The solver for the problem has not been implemented |
-| `Solution`InternalFailure | `Solution` implementation has a bug, and failed to run |
 
 ## API
 | Problem    | Input | Output |
