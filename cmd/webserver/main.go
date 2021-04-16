@@ -16,8 +16,30 @@ limitations under the License.
 
 package main
 
-import "log"
+import (
+	"fmt"
+	"github.com/gabriellukechen/coding-problem-app/pkg/http"
+	"os"
+)
 
 func main() {
-	log.Printf("hello, world!")
+	if err := run(); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %+v\n", err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
+	s, err := http.NewServer()
+	if err != nil {
+		return err
+	}
+
+	s.SetupRoutes()
+
+	if err := s.Run(); err != nil  {
+		return err
+	}
+
+	return nil
 }
