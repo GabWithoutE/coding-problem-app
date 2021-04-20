@@ -19,7 +19,7 @@ func TestYogaballRideStopSolver (t *testing.T) {
 		{"runway length 1", 0, 1, []bool{true}, true, false},
 		{"over speed: > runway length", 0, 4, []bool{true, true, true}, false, false},
 		{"over speed: sum(0, initS) > runway", 0, 3, []bool{true, true, false, true, true}, false, false},
-		{"normal: cannot stop", 0, 2, []bool{true, true, false, true, false}, false, false},
+		{"normal: cannot stop", 0, 2, []bool{true, false, false, true, false}, false, false},
 		{"normal: can stop", 0, 2, []bool{true, true, false, true, true}, true, false},
 	}
 

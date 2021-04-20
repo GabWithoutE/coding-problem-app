@@ -51,17 +51,15 @@ func (p *yogaballRideStopProblem) Solve() (interface{}, error) {
 }
 
 func (p *yogaballRideStopProblem) DP(sol *yogaballRideStopSolution) error {
-	// base cases, out of bounds speed and or position
-	//		speed bounds defined by end position - start position
-	// 		position is a spike
-	// fill out columns first
-	// first dimension is positions
-	// second dimension is speeds
-
 	runway := p.runway[p.startPos:]
 	end := len(runway) - 1
+	ss := p.startSpeed
 
-	if p.startSpeed > end {
+	if p.startSpeed == 1 {
+		ss = 0
+	}
+
+	if float32(ss * (ss + 1)) / float32(2) > float32(end) {
 		sol.IsStoppable = false
 		return nil
 	}
@@ -91,7 +89,7 @@ func (p *yogaballRideStopProblem) DP(sol *yogaballRideStopSolution) error {
 		}
 	}
 
-	sol.IsStoppable = subProbsTable[0][p.startSpeed]
+	sol.IsStoppable = subProbsTable[0][ss]
 
 	return nil
 }

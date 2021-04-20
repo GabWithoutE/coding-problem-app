@@ -55,4 +55,5 @@ Context: Coding Interview Problems Solving
 ## API
 | Problem    | Input | Output |
 | ---------- | ----- | ------ |
-| CoinChange | Coin `denominations`, `total` amount of money | Returns: Fewest number of coins of type `denominations` to make up `total` |
+| CoinChange | `denominations` []int, `total` int | Returns: Fewest number of coins of type `denominations` to make up `total` |
+| Yogaball   | `startPos` int, `startSpeed` int, `runway` []bool | Returns: if the yogaball rider can stop having started bouncing on `runway` at `startposition` at `startspeed` |
