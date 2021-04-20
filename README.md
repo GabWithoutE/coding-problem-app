@@ -52,8 +52,19 @@ Context: Coding Interview Problems Solving
 | `Problem`InvalidInputs | Invalid inputs to `problem` |
 | `Problem`Unsolvable | The solution was run, and determined that the problem could not be solved with the given valid parameters | 
 
-## API
+## pkg/solving API
 | Problem    | Input | Output |
 | ---------- | ----- | ------ |
 | CoinChange | `denominations` []int, `total` int | Returns: Fewest number of coins of type `denominations` to make up `total` |
 | Yogaball   | `startPos` int, `startSpeed` int, `runway` []bool | Returns: if the yogaball rider can stop having started bouncing on `runway` at `startposition` at `startspeed` |
+
+## Rest API
+| Endpoints   | Params               | Output (json) |
+| ----------- | -------------------- | ------------- |
+| /coinchange | denominations, total | Coins         |
+
+## Run Project
+```shell
+$ go run cmd/webserver/main.go
+$ curl -X GET http://localhost:8080/[problem]\?[params...]
+```
