@@ -1,5 +1,5 @@
 package solving
 
-type ProblemService interface {
+type Problem interface {
 	Solve() (interface{}, error)
 }

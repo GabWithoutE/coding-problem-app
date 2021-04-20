@@ -10,7 +10,7 @@ type coinChangeProblem struct {
 	Total int
 }
 
-func NewCoinChangeProblem(denominations []int, total int) ProblemService {
+func NewCoinChangeProblem(denominations []int, total int) Problem {
 	return &coinChangeProblem{
 		Denominations: denominations,
 		Total: total,
