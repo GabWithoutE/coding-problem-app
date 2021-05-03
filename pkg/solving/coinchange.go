@@ -5,6 +5,10 @@ import (
 	"github.com/pkg/errors"
 )
 
+// Problem: Given coins of integer denominations, and a total amount,
+// 		compute the fewest number of coins whose values when summed is
+// 		exactly equal to total.
+
 type coinChangeProblem struct {
 	Denominations []int
 	Total int
