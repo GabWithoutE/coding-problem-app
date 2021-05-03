@@ -1,6 +1,8 @@
 package solving
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestTrappingRainWater (t *testing.T) {
 	cases := []struct{
@@ -37,7 +39,7 @@ func TestTrappingRainWater (t *testing.T) {
 				return
 			}
 
-			if got.(trappingRainWaterSolution).TotalWater != c.expectedOutput {
+			if got.(trappingRainWaterSolution).TrappedWater != c.expectedOutput {
 				t.Fatalf("Name: %v, Expected: %v, Got: %v", c.name, c.expectedOutput, got)
 			}
 		})
