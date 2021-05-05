@@ -37,7 +37,7 @@ func run() error {
 
 	s.SetupRoutes()
 
-	if err := s.Run(); err != nil  {
+	if err := s.Run(); err != nil {
 		return err
 	}
 

@@ -35,7 +35,7 @@ func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 	currentMaxHeightTable[0][0] = p.Heights[0]
 	for i := 1; i < len(p.Heights); i++ {
 		h := p.Heights[i]
-		prevH := currentMaxHeightTable[0][i - 1]
+		prevH := currentMaxHeightTable[0][i-1]
 		if h < prevH {
 			currentMaxHeightTable[0][i] = prevH
 			continue
@@ -45,10 +45,10 @@ func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 	}
 
 	accumWaterTable := make([]int, len(p.Heights))
-	currentMaxHeightTable[1][len(p.Heights) - 1] = p.Heights[len(p.Heights) - 1]
+	currentMaxHeightTable[1][len(p.Heights)-1] = p.Heights[len(p.Heights)-1]
 	for i := len(p.Heights) - 2; i >= 0; i-- {
 		h := p.Heights[i]
-		prevH := currentMaxHeightTable[1][i + 1]
+		prevH := currentMaxHeightTable[1][i+1]
 
 		if prevH > h {
 			currentMaxHeightTable[1][i] = prevH
@@ -57,11 +57,11 @@ func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 		}
 
 		if currentMaxHeightTable[1][i] > currentMaxHeightTable[0][i] {
-			accumWaterTable[i] = currentMaxHeightTable[0][i] - h + accumWaterTable[i + 1]
+			accumWaterTable[i] = currentMaxHeightTable[0][i] - h + accumWaterTable[i+1]
 			continue
 		}
 
-		accumWaterTable[i] = currentMaxHeightTable[1][i] - h + accumWaterTable[i + 1]
+		accumWaterTable[i] = currentMaxHeightTable[1][i] - h + accumWaterTable[i+1]
 	}
 
 	return trappingRainWaterSolution{

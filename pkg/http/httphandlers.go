@@ -3,9 +3,9 @@ package http
 import (
 	"encoding/json"
 	"github.com/gabriellukechen/coding-problem-app/pkg/helpers"
+	"github.com/gabriellukechen/coding-problem-app/pkg/solving"
 	"go.uber.org/zap"
 	"net/http"
-	"github.com/gabriellukechen/coding-problem-app/pkg/solving"
 	"strconv"
 )
 
@@ -24,7 +24,7 @@ func (s *server) handleErrorEvents(w http.ResponseWriter, error solving.SolverEr
 func (s *server) httpHandlerCoinChange() http.HandlerFunc {
 	log := s.Logger()
 
-	return func (w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
 		d, _ := r.URL.Query()["denominations"]
 
 		di, err := helpers.Atoiarray(d)

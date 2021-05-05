@@ -6,7 +6,7 @@ import (
 
 type SolverError struct {
 	Problem string
-	Err error
+	Err     error
 }
 
 func (e *SolverError) Unwrap() error {

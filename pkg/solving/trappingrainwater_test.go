@@ -4,13 +4,13 @@ import (
 	"testing"
 )
 
-func TestTrappingRainWater (t *testing.T) {
-	cases := []struct{
-		name string
-		heights []int
-		expectedOutput int
+func TestTrappingRainWater(t *testing.T) {
+	cases := []struct {
+		name            string
+		heights         []int
+		expectedOutput  int
 		isErrorExpected bool
-	} {
+	}{
 		{"Empty: single width elevation map", []int{0}, 0, false},
 		{"Empty: 2 width elevation map, left lean", []int{1, 0}, 0, false},
 		{"Empty: 2 width elevation map, right lean", []int{0, 1}, 0, false},

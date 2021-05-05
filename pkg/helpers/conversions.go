@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-func Atoiarray (ss []string) ([]int, error) {
+func Atoiarray(ss []string) ([]int, error) {
 	var is []int
 
 	for _, s := range ss {

@@ -4,15 +4,15 @@ import (
 	"testing"
 )
 
-func TestYogaballRideStopSolver (t *testing.T) {
-	cases := []struct{
-		name string
-		startPos int
-		startSpeed int
-		runway []bool
-		expectedOutput bool
+func TestYogaballRideStopSolver(t *testing.T) {
+	cases := []struct {
+		name            string
+		startPos        int
+		startSpeed      int
+		runway          []bool
+		expectedOutput  bool
 		isErrorExpected bool
-	} {
+	}{
 		{"start on a pin", 0, 1, []bool{false, true, true}, false, false},
 		{"start on non 0 index", 1, 1, []bool{false, true, true}, true, false},
 		{"start on last index", 2, 1, []bool{false, true, true}, true, false},

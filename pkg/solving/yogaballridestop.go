@@ -25,16 +25,16 @@ package solving
 // 		4 | N N N N
 
 type yogaballRideStopProblem struct {
-	startPos int
+	startPos   int
 	startSpeed int
-	runway []bool
+	runway     []bool
 }
 
 func NewYogaballRideStopProblem(startPos int, startSpeed int, runway []bool) Problem {
 	return &yogaballRideStopProblem{
-		startPos: startPos,
+		startPos:   startPos,
 		startSpeed: startSpeed,
-		runway: runway,
+		runway:     runway,
 	}
 }
 
@@ -59,7 +59,7 @@ func (p *yogaballRideStopProblem) DP(sol *yogaballRideStopSolution) error {
 		ss = 0
 	}
 
-	if float32(ss * (ss + 1)) / float32(2) > float32(end) {
+	if float32(ss*(ss+1))/float32(2) > float32(end) {
 		sol.IsStoppable = false
 		return nil
 	}
@@ -80,12 +80,12 @@ func (p *yogaballRideStopProblem) DP(sol *yogaballRideStopSolution) error {
 				subProbsTable[pos][speed] = true
 				continue
 			}
-			if pos + speed > end || pos + speed + 1 > end || pos + speed - 1 > end {
+			if pos+speed > end || pos+speed+1 > end || pos+speed-1 > end {
 				subProbsTable[pos][speed] = false
 				continue
 			}
 
-			subProbsTable[pos][speed] = subProbsTable[pos + speed][speed] || subProbsTable[pos + speed + 1][speed + 1] || subProbsTable[pos + speed - 1][speed - 1]
+			subProbsTable[pos][speed] = subProbsTable[pos+speed][speed] || subProbsTable[pos+speed+1][speed+1] || subProbsTable[pos+speed-1][speed-1]
 		}
 	}
 

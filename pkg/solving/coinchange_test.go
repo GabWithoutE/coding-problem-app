@@ -4,14 +4,14 @@ import (
 	"testing"
 )
 
-func TestCoinChangeSolver (t *testing.T) {
-	cases := []struct{
-		name string
-		denominations []int
-		total int
-		expectedOutput int
+func TestCoinChangeSolver(t *testing.T) {
+	cases := []struct {
+		name            string
+		denominations   []int
+		total           int
+		expectedOutput  int
 		isErrorExpected bool
-	} {
+	}{
 		{"normal", []int{1, 2, 5}, 11, 3, false},
 		{"total 0", []int{1, 2, 5}, 0, 0, false},
 		{"denoms greater than total", []int{10}, 1, -1, false},
