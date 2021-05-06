@@ -1,29 +1,68 @@
 package solving
 
-import "testing"
+import (
+	"testing"
+)
 
-// Problem: Given a string, and a dictionary of words, add spaces to s to create a valid set of dictionary words.
-//		Return all valid sets in any order as strings
+type stringSet map[string]struct{}
 
-type orderlessComparissonStringSet map[string]bool
 
-func (oss *orderlessComparissonStringSet) Equals(comp []string) bool {
-	if len(*oss) != len(comp) {
+func (oss stringSet) Equals(comp []string) bool {
+	if len(oss) != len(comp) {
 		return false
 	}
-//	TODO: Finish implementing check for all permutations
+
+	if len(oss) == 0 && len(comp) == 0 {
+		return true
+	}
+
+	// Check to make sure all of the values in comp are present in the stringSet
+	for _, s := range comp {
+		_, exist := oss[s]
+		if !exist {
+			return false
+		}
+	}
+
+	return true
 }
 
+var (
+	exists = struct{}{}
+	emptySet = stringSet{}
+)
+
 func TestWordBreak(t *testing.T) {
-	_ := []struct {
+	cases := []struct {
 		name            string
 		unbrokenString  string
 		wordDictionary  []string
-		expectedOutput  orderlessComparissonStringSet
+		expectedOutput  stringSet
 		isErrorExpected bool
 	}{
-		{},
+		{"Empty: word dictionary empty", "c", make([]string, 0), emptySet, false},
+		{"Empty: empty input string", "", []string{"cap"}, emptySet, false},
+		{"Unit: match 1 letter, 1 dict", "c", []string{"c"}, stringSet{"c": exists}, false},
+		{"Unit: match 2 ways", "ca", []string{"ca", "c", "a"}, stringSet{"c a": exists, "ca": exists}, false},
+		{"Unit: fail partial match", "cab", []string{"ca", "c", "a"}, emptySet, false},
+		{"Full: match sub, half, and full", "cabcap", []string{"cab", "cap", "ca", "b", "p", "cabcap"}, stringSet{"cabcap": exists, "cab ca p": exists, "cab cap": exists, "ca b ca p": exists, "ca b cap": exists}, false},
 	}
-// TODO: Finish writing tests...
 
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			p := NewWordBreakProblem(c.unbrokenString, c.wordDictionary)
+
+			got, err := p.Solve()
+			if err != nil {
+				if !c.isErrorExpected {
+					t.Errorf("Name: %v, Expected: no errors, Got: %+v", c.name, err)
+				}
+				return
+			}
+
+			if !c.expectedOutput.Equals(got.(wordBreakSolution).SpacedStrings) {
+				t.Fatalf("Name: %v, Expected: %v, Got: %v", c.name, c.expectedOutput, got)
+			}
+		})
+	}
 }
