@@ -22,7 +22,6 @@ type wordBreakSolution struct {
 }
 
 func (p *wordBreakProblem) Solve() (interface{}, error) {
-
 	return p.dp()
 }
 

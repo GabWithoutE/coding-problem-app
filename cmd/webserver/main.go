@@ -18,7 +18,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gabriellukechen/coding-problem-app/pkg/http"
+	"github.com/gabriellukechen/coding-problem-app/pkg/httpapplication"
 	"os"
 )
 
@@ -30,7 +30,7 @@ func main() {
 }
 
 func run() error {
-	s, err := http.NewServer()
+	s, err := httpapplication.NewServer()
 	if err != nil {
 		return err
 	}

@@ -16,8 +16,8 @@ limitations under the License.
 
 package main
 
-import "log"
+import "github.com/gabriellukechen/coding-problem-app/pkg/cliapplication/cmd"
 
 func main() {
-	log.Printf("hello, world!")
+	cmd.Execute()
 }
