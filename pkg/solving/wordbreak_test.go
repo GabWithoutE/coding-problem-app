@@ -50,7 +50,8 @@ func TestWordBreak(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			p := NewWordBreakProblem(c.unbrokenString, c.wordDictionary)
+			ps := NewProblemsCatalogue()
+			p := ps.NewWordBreakProblem(c.unbrokenString, c.wordDictionary)
 
 			got, err := p.Solve()
 			if err != nil {

@@ -16,8 +16,18 @@ limitations under the License.
 
 package main
 
-import "github.com/gabriellukechen/coding-problem-app/pkg/cliapplication/cmd"
+import (
+	"fmt"
+	"github.com/gabriellukechen/coding-problem-app/pkg/cpsolvecli/cmd"
+	"os"
+)
 
 func main() {
-	cmd.Execute()
+	a, err := cmd.NewCPSolveCLIApp()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %+v\n", err)
+		os.Exit(1)
+	}
+
+	a.BuildCommands()
 }

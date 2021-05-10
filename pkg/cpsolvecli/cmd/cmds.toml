@@ -1,0 +1,13 @@
+[[commands]]
+usage = "wordbreak"
+method = "NewWordBreakProblem"
+short = "Break up the string, so that all substrings are in the word dictionary."
+long = "Problem: Given a string, and a dictionary of words, add spaces to s to create a valid set of dictionary words. Consider and enumerate all valid such sets."
+[[commands.inputs]]
+name = "UnbrokenString"
+type = "string"
+usage = "Input string to be broken up into sets of valid WordDictionary substrings"
+[[commands.inputs]]
+name = "WordDictionary"
+type = "[]string"
+usage = "WordDictionary as list of strings"

@@ -9,8 +9,7 @@ type wordBreakProblem struct {
 
 // Problem: Given a string, and a dictionary of words, add spaces to s to create a valid set of dictionary words.
 //		Return all valid sets in any order as strings
-
-func NewWordBreakProblem(unbrokenString string, wordDictionary []string) Problem {
+func (p *problemsCatalogue) NewWordBreakProblem(unbrokenString string, wordDictionary []string) Problem {
 	return &wordBreakProblem{
 		UnbrokenString: unbrokenString,
 		WordDictionary: wordDictionary,
