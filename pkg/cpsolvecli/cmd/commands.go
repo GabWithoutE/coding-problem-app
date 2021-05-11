@@ -1,9 +1,11 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gabriellukechen/coding-problem-app/pkg/solving"
 	"github.com/spf13/cobra"
+	"os"
 	"reflect"
 )
 
@@ -34,6 +36,7 @@ func buildChildCommands(root *cobra.Command, config *CPSolveCLIConfig) {
 
 	for _, command := range commands {
 		flagVars := make([]interface{}, 0)
+		var jsonOutput bool
 
 		cmd := &cobra.Command{
 			Use:   command.Usage,
@@ -63,12 +66,26 @@ func buildChildCommands(root *cobra.Command, config *CPSolveCLIConfig) {
 
 				problem := c.MethodByName(command.Method).Call(vs)
 				i, _ := problem[0].Interface().(solving.Problem).Solve()
-				fmt.Printf("%v", i)
+
+				if jsonOutput {
+					s, err := json.Marshal(i)
+					if err != nil {
+						fmt.Fprintf(os.Stderr, "%+v\n", err)
+						return
+					}
+					fmt.Printf("%v\n", string(s))
+					return
+				}
+
+				fmt.Printf("%+v\n", i)
 			},
 		}
 
+		cmd.Flags().BoolVar(&jsonOutput, "json", false, "Output JSON")
+
 		for _, in := range command.Inputs {
 			n := in.Name
+			u := in.Usage
 
 			switch in.Type {
 			case "string":
@@ -77,42 +94,42 @@ func buildChildCommands(root *cobra.Command, config *CPSolveCLIConfig) {
 
 				flagVar := reflect.Zero(t).Interface().(string)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().StringVar(&flagVar, n, "", in.Usage)
+				cmd.Flags().StringVar(&flagVar, n, "", u)
 			case "[]string":
 				var tmp []string
 				t := reflect.TypeOf(tmp)
 
 				flagVar := reflect.Zero(t).Interface().([]string)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().StringSliceVar(&flagVar, n, nil, in.Usage)
+				cmd.Flags().StringSliceVar(&flagVar, n, nil, u)
 			case "int":
 				var tmp int
 				t := reflect.TypeOf(tmp)
 
 				flagVar := reflect.Zero(t).Interface().(int)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().IntVar(&flagVar, n, 0, in.Usage)
+				cmd.Flags().IntVar(&flagVar, n, 0, u)
 			case "[]int":
 				var tmp []int
 				t := reflect.TypeOf(tmp)
 
 				flagVar := reflect.Zero(t).Interface().([]int)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().IntSliceVar(&flagVar, n, nil, in.Usage)
+				cmd.Flags().IntSliceVar(&flagVar, n, nil, u)
 			case "bool":
 				var tmp bool
 				t := reflect.TypeOf(tmp)
 
 				flagVar := reflect.Zero(t).Interface().(bool)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().BoolVar(&flagVar, n, false, in.Usage)
+				cmd.Flags().BoolVar(&flagVar, n, false, u)
 			case "[]bool":
 				var tmp []bool
 				t := reflect.TypeOf(tmp)
 
 				flagVar := reflect.Zero(t).Interface().([]bool)
 				flagVars = append(flagVars, &flagVar)
-				cmd.Flags().BoolSliceVar(&flagVar, n, nil, in.Usage)
+				cmd.Flags().BoolSliceVar(&flagVar, n, nil, u)
 			}
 		}
 
