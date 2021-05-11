@@ -29,7 +29,8 @@ func TestTrappingRainWater(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			p := NewTrappingRainWaterProblem(c.heights)
+			cat := NewProblemsCatalogue()
+			p := cat.NewTrappingRainWaterProblem(c.heights)
 
 			got, err := p.Solve()
 			if err != nil {

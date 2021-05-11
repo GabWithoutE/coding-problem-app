@@ -21,7 +21,8 @@ func TestCoinChangeSolver(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			p := NewCoinChangeProblem(c.denominations, c.total)
+			cat := NewProblemsCatalogue()
+			p := cat.NewCoinChangeProblem(c.denominations, c.total)
 
 			got, err := p.Solve()
 			if err != nil {

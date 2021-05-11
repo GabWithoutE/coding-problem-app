@@ -38,7 +38,7 @@ func (p *wordBreakProblem) dp() (interface{}, error) {
 		if _, exists := dict[w]; exists {
 			return nil, &SolverError{
 				Problem: "Word Break",
-				Err: errors.New("Solve: duplicate dictionary entries"),
+				Err:     errors.New("Solve: duplicate dictionary entries"),
 			}
 		}
 		dict[w] = true
@@ -52,13 +52,13 @@ func (p *wordBreakProblem) dp() (interface{}, error) {
 	}
 
 	// initialize first entry, at breakpoint 0
-	s := p.UnbrokenString[0 : 1]
+	s := p.UnbrokenString[0:1]
 	if _, exists := dict[s]; exists {
 		breakpointTable[0] = append(breakpointTable[0], s)
 	}
 
 	for bp := 1; bp < len(breakpointTable); bp++ {
-		currentSubstring := p.UnbrokenString[0 : bp + 1]
+		currentSubstring := p.UnbrokenString[0 : bp+1]
 
 		// check if the entire current substring is matchable
 		if _, exists := dict[currentSubstring]; exists {
@@ -73,7 +73,7 @@ func (p *wordBreakProblem) dp() (interface{}, error) {
 			}
 
 			// remove the matched prefix, to check if postfix matches
-			postfix := currentSubstring[i + 1 : bp + 1]
+			postfix := currentSubstring[i+1 : bp+1]
 
 			// no match, then move on
 			if _, exists := dict[postfix]; !exists {
@@ -82,12 +82,12 @@ func (p *wordBreakProblem) dp() (interface{}, error) {
 
 			// append the matches to the values
 			for _, val := range breakpointTable[i] {
-				breakpointTable[bp] = append(breakpointTable[bp], val + " " + postfix)
+				breakpointTable[bp] = append(breakpointTable[bp], val+" "+postfix)
 			}
 		}
 	}
 
 	return wordBreakSolution{
-		SpacedStrings: breakpointTable[len(p.UnbrokenString) - 1],
+		SpacedStrings: breakpointTable[len(p.UnbrokenString)-1],
 	}, nil
 }

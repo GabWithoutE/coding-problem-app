@@ -25,7 +25,8 @@ func TestYogaballRideStopSolver(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			p := NewYogaballRideStopProblem(c.startPos, c.startSpeed, c.runway)
+			cat := NewProblemsCatalogue()
+			p := cat.NewYogaballRideStopProblem(c.startPos, c.startSpeed, c.runway)
 
 			got, err := p.Solve()
 			if err != nil {

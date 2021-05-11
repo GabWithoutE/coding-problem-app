@@ -6,7 +6,6 @@ import (
 
 type stringSet map[string]struct{}
 
-
 func (oss stringSet) Equals(comp []string) bool {
 	if len(oss) != len(comp) {
 		return false
@@ -28,7 +27,7 @@ func (oss stringSet) Equals(comp []string) bool {
 }
 
 var (
-	exists = struct{}{}
+	exists   = struct{}{}
 	emptySet = stringSet{}
 )
 

@@ -2,8 +2,8 @@ package cmd
 
 import "github.com/spf13/cobra"
 
-type CPSolveCLIApp struct{
-	Config *CPSolveCLIConfig
+type CPSolveCLIApp struct {
+	Config  *CPSolveCLIConfig
 	command *cobra.Command
 }
 
@@ -19,6 +19,5 @@ func NewCPSolveCLIApp() (*CPSolveCLIApp, error) {
 }
 
 func (a *CPSolveCLIApp) BuildCommands() {
-	 buildCobraCommands(a.Config)
-
+	buildCobraCommands(a.Config)
 }

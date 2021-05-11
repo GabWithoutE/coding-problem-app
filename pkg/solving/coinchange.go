@@ -10,14 +10,14 @@ import (
 // 		exactly equal to total.
 
 type coinChangeProblem struct {
-	Denominations []int
-	Total         int
+	denominations []int
+	total         int
 }
 
-func NewCoinChangeProblem(denominations []int, total int) Problem {
+func (p *problemsCatalogue) NewCoinChangeProblem(denominations []int, total int) Problem {
 	return &coinChangeProblem{
-		Denominations: denominations,
-		Total:         total,
+		denominations: denominations,
+		total:         total,
 	}
 }
 
@@ -26,14 +26,14 @@ type coinChangeSolution struct {
 }
 
 func (p *coinChangeProblem) Solve() (interface{}, error) {
-	if p.Denominations == nil {
+	if p.denominations == nil {
 		return nil, &SolverError{
 			Problem: "Coin Change",
 			Err:     errors.New("Solve: no denominations given"),
 		}
 	}
 
-	cs := solveCoinChange(p.Denominations, p.Total)
+	cs := solveCoinChange(p.denominations, p.total)
 
 	return coinChangeSolution{
 		Coins: cs,

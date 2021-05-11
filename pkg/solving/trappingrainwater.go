@@ -4,22 +4,22 @@ package solving
 // 		compute how much water can be trapped.
 
 type trappingRainWaterProblem struct {
-	Heights []int
+	heights []int
 }
 
-func NewTrappingRainWaterProblem(heights []int) Problem {
+func (p *problemsCatalogue) NewTrappingRainWaterProblem(heights []int) Problem {
 	return &trappingRainWaterProblem{
-		Heights: heights,
+		heights: heights,
 	}
 }
 
 type trappingRainWaterSolution struct {
-	TrappedWater int `json:"TrappedWater"`
+	TrappedWater int `json:"trappedWater"`
 }
 
 func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 	// If the elevation map is only 2 wide, water trapping is impossible
-	if len(p.Heights) <= 2 {
+	if len(p.heights) <= 2 {
 		return trappingRainWaterSolution{
 			TrappedWater: 0,
 		}, nil
@@ -29,12 +29,12 @@ func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 	//		side for j = 0, and right hand for j = 1
 	currentMaxHeightTable := make([][]int, 2)
 	for i, _ := range currentMaxHeightTable {
-		currentMaxHeightTable[i] = make([]int, len(p.Heights))
+		currentMaxHeightTable[i] = make([]int, len(p.heights))
 	}
 
-	currentMaxHeightTable[0][0] = p.Heights[0]
-	for i := 1; i < len(p.Heights); i++ {
-		h := p.Heights[i]
+	currentMaxHeightTable[0][0] = p.heights[0]
+	for i := 1; i < len(p.heights); i++ {
+		h := p.heights[i]
 		prevH := currentMaxHeightTable[0][i-1]
 		if h < prevH {
 			currentMaxHeightTable[0][i] = prevH
@@ -44,10 +44,10 @@ func (p *trappingRainWaterProblem) Solve() (interface{}, error) {
 		currentMaxHeightTable[0][i] = h
 	}
 
-	accumWaterTable := make([]int, len(p.Heights))
-	currentMaxHeightTable[1][len(p.Heights)-1] = p.Heights[len(p.Heights)-1]
-	for i := len(p.Heights) - 2; i >= 0; i-- {
-		h := p.Heights[i]
+	accumWaterTable := make([]int, len(p.heights))
+	currentMaxHeightTable[1][len(p.heights)-1] = p.heights[len(p.heights)-1]
+	for i := len(p.heights) - 2; i >= 0; i-- {
+		h := p.heights[i]
 		prevH := currentMaxHeightTable[1][i+1]
 
 		if prevH > h {

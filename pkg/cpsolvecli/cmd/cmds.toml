@@ -11,3 +11,45 @@ usage = "Input string to be broken up into sets of valid WordDictionary substrin
 name = "WordDictionary"
 type = "[]string"
 usage = "WordDictionary as list of strings"
+
+[[commands]]
+usage = "coinchange"
+method = "NewCoinChangeProblem"
+short = "Return the fewest number of Coins equal to Total"
+long = "Problem: Given a list of integer coin denomications, and a total value, solves for the least number of coins needed to break total value"
+[[commands.inputs]]
+name = "Denominations"
+type = "[]int"
+usage = "List of coin denominations that can be used for breaking Total"
+[[commands.inputs]]
+name = "Total"
+type = "int"
+usage = "Total value to be broken into Denominations"
+
+[[commands]]
+usage = "yogaball"
+method = "NewYogaballRideStopProblem"
+short = "Return whether or not the yogaball rider will be able to stop safely."
+long = "Problem: Given an initial speed and location, and a runway topography, return whether or not the rider can stop based on constrains, rider can only change speed by 1 per bounce, and the rider must stop on a safe location ON the runway."
+[[commands.inputs]]
+name = "StartPosition"
+type = "int"
+usage = "Initial position of the yogaball rider on the runway"
+[[commands.inputs]]
+name = "StartSpeed"
+type = "int"
+usage = "Initial speed of the yogaball rider on the runway"
+[[commands.inputs]]
+name = "Runway"
+type = "[]bool"
+usage = "Array of bools describing the runway safety topography"
+
+[[commands]]
+usage = "rainwater"
+method = "NewTrappingRainWaterProblem"
+short = "Return the amount of water that can be trapped in the terrain"
+long = "Problem: Given a terrain topology, returns the amount of water that can be trapped in the topology"
+[[commands.inputs]]
+name = "Heights"
+type = "[]int"
+usage = "List of int heights that describe the elevation topology."

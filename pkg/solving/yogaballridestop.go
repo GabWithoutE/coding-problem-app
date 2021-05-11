@@ -30,7 +30,7 @@ type yogaballRideStopProblem struct {
 	runway     []bool
 }
 
-func NewYogaballRideStopProblem(startPos int, startSpeed int, runway []bool) Problem {
+func (p *problemsCatalogue) NewYogaballRideStopProblem(startPos int, startSpeed int, runway []bool) Problem {
 	return &yogaballRideStopProblem{
 		startPos:   startPos,
 		startSpeed: startSpeed,
@@ -39,7 +39,7 @@ func NewYogaballRideStopProblem(startPos int, startSpeed int, runway []bool) Pro
 }
 
 type yogaballRideStopSolution struct {
-	IsStoppable bool `json:"IsStoppable"`
+	IsStoppable bool `json:"isStoppable"`
 }
 
 func (p *yogaballRideStopProblem) Solve() (interface{}, error) {

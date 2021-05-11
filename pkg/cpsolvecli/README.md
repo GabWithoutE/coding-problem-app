@@ -52,6 +52,8 @@ usage = "WordDictionary as list of strings"
       for making Method call, they need to be dereferenced... Maybe there's a better
       workaround for this in a future refactor. The future implementation of generics
       in Golang would be very helpful with this.
+    - The order of inputs in the commands configuration matters, as that's the order 
+      they'll be passed into the factory as arguments.
     
 ### Commands
 ```shell
