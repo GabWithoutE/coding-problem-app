@@ -2,11 +2,12 @@ package httpapplication
 
 import (
 	"encoding/json"
+	"net/http"
+	"strconv"
+
 	"github.com/gabriellukechen/coding-problem-app/pkg/helpers"
 	"github.com/gabriellukechen/coding-problem-app/pkg/solving"
 	"go.uber.org/zap"
-	"net/http"
-	"strconv"
 )
 
 func (s *server) respond(w http.ResponseWriter, data interface{}, status int) {
@@ -48,7 +49,8 @@ func (s *server) httpHandlerCoinChange() http.HandlerFunc {
 			return
 		}
 
-		p := solving.NewCoinChangeProblem(di, ti)
+		cat := solving.NewProblemsCatalogue()
+		p := cat.NewCoinChangeProblem(di, ti)
 
 		solution, err := p.Solve()
 		if err != nil {
